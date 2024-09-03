@@ -1,0 +1,18 @@
+The time to complete a process is the 'end' timestamp minus the 'start' timestamp. The average time is calculated by the total time to complete every process on the machine divided by the number of processes that were run.
+
+The resulting table should have the machine_id along with the average time as processing_time, which should be rounded to 3 decimal places.
+# Write your MySQL query statement below
+# Write your MySQL query statement below
+"""SELECT
+    machine_id,
+    ROUND(
+        AVG(
+            CASE
+                WHEN activity_type = 'start' THEN -timestamp
+                ELSE timestamp
+            END
+        ) * 2,
+        3
+    ) AS processing_time
+FROM Activity
+GROUP BY 1;"""
